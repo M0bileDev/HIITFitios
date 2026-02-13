@@ -14,7 +14,7 @@ struct ExerciseView: View {
 
     var body: some View {
         VStack {
-            HeaderView()
+            HeaderView(exerciceName: exerciseNames[index])
             Text("Video player")
             Text("Timer")
             Text("Start/Done button")
