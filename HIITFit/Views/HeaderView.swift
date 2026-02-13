@@ -22,3 +22,7 @@ struct HeaderView: View {
         }
     }
 }
+
+#Preview(traits: .sizeThatFitsLayout) {
+    HeaderView(exerciceName: "Squat")
+}
