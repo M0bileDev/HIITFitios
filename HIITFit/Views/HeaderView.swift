@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HeaderView: View {
+    let exerciceName: String
     var body: some View {
         VStack {
-            Text(exerciseNames[index])
+            Text(exerciceName)
                 .font(.largeTitle)
             HStack {
                 Image(systemName: "1.circle")
