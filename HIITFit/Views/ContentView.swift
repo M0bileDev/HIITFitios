@@ -12,7 +12,10 @@ struct ContentView: View {
         TabView {
             WelcomeView()
             ForEach(
-                0..<4,
+                // range is not longer fixed, need to provide id 
+                Exercise.exercises.indices,
+                // \.self -> each element it is own identifier
+                id: \.self,
                 content: { index in
                     ExerciseView(index: index)
                 }
