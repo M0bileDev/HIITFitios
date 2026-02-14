@@ -18,7 +18,7 @@ struct ExerciseView: View {
         // container view that provides with the screen’s measurements
         GeometryReader { geometry in
             VStack {
-                HeaderView(exerciceName: exercise.exerciseName)
+                HeaderView(exerciceName: exercise.exerciseName).padding(.bottom)
                 if let url = Bundle.main.url(
                     forResource: exercise.videoName,
                     withExtension: "mp4"
