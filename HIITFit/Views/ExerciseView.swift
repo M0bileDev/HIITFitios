@@ -5,6 +5,7 @@
 //  Created by Damian Ogórek on 12/02/2026.
 //
 
+import AVKit
 import SwiftUI
 
 struct ExerciseView: View {
@@ -16,7 +17,16 @@ struct ExerciseView: View {
     var body: some View {
         VStack {
             HeaderView(exerciceName: exercise.exerciseName)
-            Text("Video player")
+            if let url = Bundle.main.url(
+                forResource: exercise.videoName,
+                withExtension: "mp4"
+            ) {
+                VideoPlayer(player: AVPlayer(url: url))
+            } else {
+                Text("Couldn't find \(exercise.videoName).mp4").foregroundColor(
+                    .red
+                )
+            }
             Text("Timer")
             Text("Start/Done button")
             Text("Rating")
