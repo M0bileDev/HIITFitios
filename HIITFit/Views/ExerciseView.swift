@@ -39,7 +39,7 @@ struct ExerciseView: View {
                     style: .timer
                 ).font(.system(size: geometry.size.height * 0.07))
                 Button("Start/Done") {}.font(.title3).padding()
-                Text("Rating")
+                RatingView().padding()
                 Spacer()
                 Button("History") {}.padding(.bottom)
             }
