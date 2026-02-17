@@ -20,6 +20,9 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    /// The function uses the passed date format and generates a string
+    /// - parameters:
+    ///     - value: Provided by user custom date format like "dd MM yyyy"
     func formatted(from value: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = value
