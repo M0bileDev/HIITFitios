@@ -8,50 +8,27 @@
 import SwiftUI
 
 struct HistoryView: View {
-    let today = Date()
-    //time interval of two days
-    let yesterday = Date().addingTimeInterval(-86400)
-
-    let exercises1 = ["Squat", "Step Up", "Burpee", "Sun Salute"]
-    let exercises2 = ["Squat", "Step Up", "Burpee"]
+    let history = HistoryStore()
 
     var body: some View {
         VStack {
             Text("History").font(.title).padding()
             Form {
-                Section(
-                    content: {
-                        ForEach(
-                            exercises1,
-                            // \.self -> each element of the array is its own uniqe key
-                            id: \.self,
-                            content: { exercise in
-                                Text(exercise)
+                ForEach(
+                    history.exerciseDays,
+                    content: { day in
+                        Section(
+                            header: Text(day.date.formatted(from: "dd MMM")),
+                            content: {
+                                ForEach(
+                                    day.exercises,
+                                    id: \.self,
+                                    content: { exercise in
+                                        Text(exercise)
+                                    }
+                                )
                             }
                         )
-                    },
-                    header: {
-                        Text(
-                            today.formatted(.dateTime.month(.abbreviated).day())
-                        ).font(.headline)
-                    }
-                )
-                Section(
-                    content: {
-                        ForEach(
-                            exercises2,
-                            id: \.self,
-                            content: { exercise in
-                                Text(exercise)
-                            }
-                        )
-                    },
-                    header: {
-                        Text(
-                            yesterday.formatted(
-                                .dateTime.month(.abbreviated).day()
-                            )
-                        ).font(.headline)
                     }
                 )
             }
