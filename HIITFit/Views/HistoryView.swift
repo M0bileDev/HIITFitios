@@ -20,7 +20,16 @@ struct HistoryView: View {
             Text("History").font(.title).padding()
             Form {
                 Section(
-                    content: {},
+                    content: {
+                        ForEach(
+                            exercises1,
+                            // \.self -> each element of the array is its own uniqe key
+                            id: \.self,
+                            content: { exercise in
+                                Text(exercise)
+                            }
+                        )
+                    },
                     header: {
                         Text(
                             today.formatted(.dateTime.month(.abbreviated).day())
@@ -28,7 +37,15 @@ struct HistoryView: View {
                     }
                 )
                 Section(
-                    content: {},
+                    content: {
+                        ForEach(
+                            exercises2,
+                            id: \.self,
+                            content: { exercise in
+                                Text(exercise)
+                            }
+                        )
+                    },
                     header: {
                         Text(
                             yesterday.formatted(
