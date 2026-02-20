@@ -16,15 +16,28 @@ struct WelcomeView: View {
                 Button("History") {}.padding(.bottom)
             }
             VStack {
-                HStack(alignment:.bottom) {
+                HStack(alignment: .bottom) {
                     VStack(alignment: .leading) {
                         Text("Get fit").font(.largeTitle)
-                        Text("with hight intensity interval training").font(.headline)
+                        Text("with hight intensity interval training").font(
+                            .headline
+                        )
                     }
                     Image("step-up")
                         .resizedToFill(width: 240, height: 240)
-                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                        .clipShape(
+                            Circle()
+                        )
                 }
+                Button(
+                    action: {},
+                    label: {
+                        Text("Get started")
+                        Image(systemName: "arrow.right.circle")
+                    }
+                )
+                .font(.title2)
+                .padding()
             }
         }
     }
