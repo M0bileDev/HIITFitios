@@ -9,11 +9,12 @@ import AVKit
 import SwiftUI
 
 struct ExerciseView: View {
+    @Binding var selectedTab: Int
     let index: Int
     var exercise: Exercise {
         Exercise.exercises[index]
     }
-    
+
     var body: some View {
         // container view that provides with the screen’s measurements
         GeometryReader { geometry in
@@ -34,5 +35,5 @@ struct ExerciseView: View {
 }
 
 #Preview {
-    ExerciseView(index: 0)
+    ExerciseView(selectedTab: .constant(1), index: 0)
 }
