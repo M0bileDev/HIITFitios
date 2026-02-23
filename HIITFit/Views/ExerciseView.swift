@@ -9,18 +9,20 @@ import AVKit
 import SwiftUI
 
 struct ExerciseView: View {
+    
     @Binding var selectedTab: Int
+    
     let index: Int
     var exercise: Exercise {
         Exercise.exercises[index]
     }
-    var lastExercise: Bool{
+    var lastExercise: Bool {
         index + 1 == Exercise.exercises.count
     }
-    var startButton: some View{
+    var startButton: some View {
         Button("Start exercise") {}
     }
-    var doneButton: some View{
+    var doneButton: some View {
         Button("Done") {
             selectedTab = lastExercise ? 9 : selectedTab + 1
         }
@@ -30,7 +32,10 @@ struct ExerciseView: View {
         // container view that provides with the screen’s measurements
         GeometryReader { geometry in
             VStack {
-                HeaderView(titleText: exercise.exerciseName).padding(.bottom)
+                HeaderView(
+                    selectedTab: $selectedTab,
+                    titleText: exercise.exerciseName
+                ).padding(.bottom)
                 VideoPlayerView(
                     videoName: exercise.videoName,
                     videExtension: "mp4"
