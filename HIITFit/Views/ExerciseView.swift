@@ -17,6 +17,14 @@ struct ExerciseView: View {
     var lastExercise: Bool{
         index + 1 == Exercise.exercises.count
     }
+    var startButton: some View{
+        Button("Start exercise") {}
+    }
+    var doneButton: some View{
+        Button("Done") {
+            selectedTab = lastExercise ? 9 : selectedTab + 1
+        }
+    }
 
     var body: some View {
         // container view that provides with the screen’s measurements
@@ -29,12 +37,8 @@ struct ExerciseView: View {
                 ).frame(height: geometry.size.height * 0.45)
                 TimerView(fontSize: geometry.size.height * 0.07)
                 HStack(spacing: 150) {
-                    Button("Start exercise") {
-
-                    }
-                    Button("Done") {
-                        selectedTab = lastExercise ? 9 : selectedTab + 1
-                    }
+                    startButton
+                    doneButton
                 }.font(.title3).padding()
                 RatingView().padding()
                 Spacer()
