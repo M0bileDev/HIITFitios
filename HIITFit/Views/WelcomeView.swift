@@ -33,7 +33,9 @@ struct WelcomeView: View {
                         )
                 }
                 Button(
-                    action: {},
+                    action: {
+                        selectedTab = 0
+                    },
                     label: {
                         Text("Get started")
                         Image(systemName: "arrow.right.circle")
