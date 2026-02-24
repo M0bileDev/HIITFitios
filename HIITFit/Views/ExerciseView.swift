@@ -70,5 +70,5 @@ struct ExerciseView: View {
 }
 
 #Preview {
-    ExerciseView(selectedTab: .constant(1), index: 0)
+    ExerciseView(selectedTab: .constant(3), index: 3)
 }
