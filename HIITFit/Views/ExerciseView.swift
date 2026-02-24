@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ExerciseView: View {
     
+    @State private var rating = 0
     @Binding var selectedTab: Int
     
     let index: Int
@@ -45,7 +46,7 @@ struct ExerciseView: View {
                     startButton
                     doneButton
                 }.font(.title3).padding()
-                RatingView().padding()
+                RatingView(rating: $rating).padding()
                 Spacer()
                 Button("History") {}.padding(.bottom)
             }
