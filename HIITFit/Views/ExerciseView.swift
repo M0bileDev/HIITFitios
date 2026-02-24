@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ExerciseView: View {
 
+    @State private var showSuccess = false
     @State private var showHistory = false
     @State private var rating = 0
     @Binding var selectedTab: Int
@@ -26,7 +27,11 @@ struct ExerciseView: View {
     }
     var doneButton: some View {
         Button("Done") {
-            selectedTab = lastExercise ? 9 : selectedTab + 1
+            if lastExercise {
+                showSuccess.toggle()
+            } else {
+                selectedTab += 1
+            }
         }
     }
 
@@ -45,7 +50,9 @@ struct ExerciseView: View {
                 TimerView(fontSize: geometry.size.height * 0.07)
                 HStack(spacing: 150) {
                     startButton
-                    doneButton
+                    doneButton.sheet(isPresented: $showSuccess, content: {
+                        SuccessView()
+                    })
                 }.font(.title3).padding()
                 RatingView(rating: $rating).padding()
                 Spacer()
