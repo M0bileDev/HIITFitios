@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SuccessView: View {
+
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         ZStack(alignment: .center) {
             VStack {
@@ -25,7 +28,12 @@ struct SuccessView: View {
             }
             VStack {
                 Spacer()
-                Button("Continue", action: {}).padding(.bottom)
+                Button(
+                    "Continue",
+                    action: {
+                        dismiss()
+                    }
+                ).padding(.bottom)
 
             }
 
