@@ -9,10 +9,11 @@ import AVKit
 import SwiftUI
 
 struct ExerciseView: View {
-    
+
+    @State private var showHistory = false
     @State private var rating = 0
     @Binding var selectedTab: Int
-    
+
     let index: Int
     var exercise: Exercise {
         Exercise.exercises[index]
@@ -48,7 +49,14 @@ struct ExerciseView: View {
                 }.font(.title3).padding()
                 RatingView(rating: $rating).padding()
                 Spacer()
-                Button("History") {}.padding(.bottom)
+                Button("History") {
+                    showHistory.toggle()
+                }.padding(.bottom).sheet(
+                    isPresented: $showHistory,
+                    content: {
+                        HistoryView(showHistory: $showHistory)
+                    }
+                )
             }
         }
     }
