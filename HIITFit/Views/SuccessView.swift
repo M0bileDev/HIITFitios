@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SuccessView: View {
 
+    @Binding var selectedTab: Int
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -32,6 +33,7 @@ struct SuccessView: View {
                     "Continue",
                     action: {
                         dismiss()
+                        selectedTab = 9
                     }
                 ).padding(.bottom)
 
@@ -42,5 +44,5 @@ struct SuccessView: View {
 }
 
 #Preview {
-    SuccessView()
+    SuccessView(selectedTab: .constant(3))
 }
