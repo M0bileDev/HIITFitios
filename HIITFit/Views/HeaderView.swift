@@ -22,7 +22,9 @@ struct HeaderView: View {
                     id: \.self,
                     content: { index in
                         let fill = index == selectedTab ? ".fill" : ""
-                        Image(systemName: "\(index + 1).circle\(fill)")
+                        Image(systemName: "\(index + 1).circle\(fill)").onTapGesture {
+                            selectedTab = index
+                        }
                     }
                 )
 
