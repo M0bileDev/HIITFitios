@@ -51,7 +51,7 @@ struct ExerciseView: View {
                 HStack(spacing: 150) {
                     startButton
                     doneButton.sheet(isPresented: $showSuccess, content: {
-                        SuccessView()
+                        SuccessView().presentationDetents([.medium, .large])
                     })
                 }.font(.title3).padding()
                 RatingView(rating: $rating).padding()
