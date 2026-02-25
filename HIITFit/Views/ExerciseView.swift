@@ -53,19 +53,34 @@ struct ExerciseView: View {
                     videoName: exercise.videoName,
                     videExtension: "mp4"
                 ).frame(height: geometry.size.height * 0.45)
-                if showTimer{
-                    TimerView(timerDone: $timerDone, size: geometry.size.height * 0.07)
+
+                HStack(
+                    spacing: 150,
+                    content: {
+                        startButton
+                        doneButton
+                            .disabled(!timerDone)
+                            .sheet(
+                                isPresented: $showSuccess,
+                                content: {
+                                    SuccessView(selectedTab: $selectedTab)
+                                        .presentationDetents([.medium, .large])
+                                }
+                            )
+                    }
+                )
+                .font(.title3)
+                .padding()
+
+                if showTimer {
+                    TimerView(
+                        timerDone: $timerDone,
+                        size: geometry.size.height * 0.07
+                    )
                 }
-                HStack(spacing: 150) {
-                    startButton
-                    doneButton
-                        .disabled(!timerDone)
-                        .sheet(isPresented: $showSuccess, content: {
-                        SuccessView(selectedTab: $selectedTab,).presentationDetents([.medium, .large])
-                    })
-                }.font(.title3).padding()
-                RatingView(rating: $rating).padding()
                 Spacer()
+                RatingView(rating: $rating).padding()
+
                 Button("History") {
                     showHistory.toggle()
                 }.padding(.bottom).sheet(
