@@ -8,19 +8,32 @@
 import SwiftUI
 
 struct TimerView: View {
-    // alias for Double
-    let interval: TimeInterval = 30
-    var fontSize: CGFloat = 0.0
-    
+
+    @State private var timeRemaining: Int = 3
+    @Binding var timerDone: Bool
+    let size: Double
+
     var body: some View {
-        Text(
-            //current date and time -> adds interval seconds to this value
-            Date().addingTimeInterval(interval),
-            style: .timer
-        ).font(.system(size: fontSize))
+        TimelineView(
+            .animation(
+                minimumInterval: 1.0,
+                paused: timeRemaining <= 0
+            ),
+            content: { context in
+                CountdownView(
+                    timeRemaining: $timeRemaining,
+                    date: context.date,
+                    size: size
+                ).onChange(of: timeRemaining){
+                    if(timeRemaining < 1){
+                        timerDone = true
+                    }
+                }
+            }
+        )
     }
 }
 
-#Preview(traits: .sizeThatFitsLayout) {
-    TimerView(fontSize: 100.0)
+#Preview {
+    TimerView(timerDone: .constant(false), size: 90)
 }
