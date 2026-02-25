@@ -13,6 +13,8 @@ struct ExerciseView: View {
     @State private var showSuccess = false
     @State private var showHistory = false
     @State private var rating = 0
+    @State private var timerDone = false
+    @State private var showTimer = false
     @Binding var selectedTab: Int
 
     let index: Int
@@ -23,7 +25,9 @@ struct ExerciseView: View {
         index + 1 == Exercise.exercises.count
     }
     var startButton: some View {
-        Button("Start exercise") {}
+        Button("Start exercise") {
+            showTimer.toggle()
+        }
     }
     var doneButton: some View {
         Button("Done") {
@@ -47,7 +51,9 @@ struct ExerciseView: View {
                     videoName: exercise.videoName,
                     videExtension: "mp4"
                 ).frame(height: geometry.size.height * 0.45)
-                TimerView(fontSize: geometry.size.height * 0.07)
+                if showTimer{
+                    TimerView(timerDone: $timerDone, size: geometry.size.height * 0.07)
+                }
                 HStack(spacing: 150) {
                     startButton
                     doneButton.sheet(isPresented: $showSuccess, content: {
