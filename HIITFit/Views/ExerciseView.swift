@@ -31,6 +31,8 @@ struct ExerciseView: View {
     }
     var doneButton: some View {
         Button("Done") {
+            timerDone = false
+            showTimer.toggle()
             if lastExercise {
                 showSuccess.toggle()
             } else {
@@ -56,7 +58,9 @@ struct ExerciseView: View {
                 }
                 HStack(spacing: 150) {
                     startButton
-                    doneButton.sheet(isPresented: $showSuccess, content: {
+                    doneButton
+                        .disabled(!timerDone)
+                        .sheet(isPresented: $showSuccess, content: {
                         SuccessView(selectedTab: $selectedTab,).presentationDetents([.medium, .large])
                     })
                 }.font(.title3).padding()
