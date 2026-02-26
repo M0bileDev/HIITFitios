@@ -26,7 +26,9 @@ struct ContentView: View {
                 }
             )
             Text("Execrice 2")
-        }.tabViewStyle(PageTabViewStyle())
+        }
+        .environmentObject(HistoryStore())
+        .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
     }
 }
