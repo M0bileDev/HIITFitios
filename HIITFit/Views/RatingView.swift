@@ -9,7 +9,9 @@ import SwiftUI
 
 struct RatingView: View {
     
-    @Binding var rating: Int
+    let exerciseIndex: Int
+    @AppStorage("ratings") private var ratings = "0000"
+    @State private var rating = 0
     
     let maximumRating = 5
     let onColor = Color.red
@@ -34,5 +36,5 @@ struct RatingView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    RatingView(rating: .constant(3))
+    RatingView(exerciseIndex: 0)
 }
