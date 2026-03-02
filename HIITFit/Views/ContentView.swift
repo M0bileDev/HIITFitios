@@ -27,7 +27,6 @@ struct ContentView: View {
             )
             Text("Execrice 2")
         }
-        .environmentObject(HistoryStore())
         .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
     }
