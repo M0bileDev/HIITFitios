@@ -20,13 +20,16 @@ class HistoryStore: ObservableObject {
     init() {
         //compiler directive
         #if DEBUG
-            createDevData()
+            //            createDevData()
         #endif
     }
 
     func addDoneExercise(_ exerciseName: String) {
         let today = Date()
-        if today.isSameDay(from: exerciseDays[0].date) {
+
+        if let firstDate = exerciseDays.first?.date,
+            today.isSameDay(from: firstDate)
+        {
             print("Adding \(exerciseName)")
             exerciseDays[0].exercises.append(exerciseName)
         } else {
@@ -35,5 +38,7 @@ class HistoryStore: ObservableObject {
                 at: 0
             )
         }
+
+        print("History: ", exerciseDays)
     }
 }
