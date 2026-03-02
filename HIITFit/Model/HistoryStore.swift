@@ -22,6 +22,7 @@ class HistoryStore: ObservableObject {
         #if DEBUG
             //            createDevData()
         #endif
+        print("Initializing HistoryStore")
     }
 
     func addDoneExercise(_ exerciseName: String) {
