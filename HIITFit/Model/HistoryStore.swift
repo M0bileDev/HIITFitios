@@ -15,6 +15,8 @@ struct ExerciseDay: Identifiable {
 }
 
 class HistoryStore: ObservableObject {
+    
+    @Published var loadingError = false
     @Published var exerciseDays: [ExerciseDay] = []
 
     init() {
@@ -22,6 +24,7 @@ class HistoryStore: ObservableObject {
             try load()
         }catch{
             print("Error:", error)
+            loadingError.toggle()
         }
         
         //compiler directive
@@ -57,5 +60,5 @@ enum FileError : Error{
 
 
 func load() throws {
-    throw FileError.loadFailure
+//    throw FileError.loadFailure
 }
