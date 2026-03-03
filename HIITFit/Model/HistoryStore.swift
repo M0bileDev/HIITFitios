@@ -15,18 +15,22 @@ struct ExerciseDay: Identifiable {
 }
 
 class HistoryStore: ObservableObject {
-    
+
     @Published var loadingError = false
     @Published var exerciseDays: [ExerciseDay] = []
 
+    var dataURL: URL {
+        URL.documentsDirectory.appendingPathExtension("history.plist")
+    }
+
     init() {
-        do{
+        do {
             try load()
-        }catch{
+        } catch {
             print("Error:", error)
             loadingError.toggle()
         }
-        
+
         //compiler directive
         #if DEBUG
             //            createDevData()
@@ -51,14 +55,26 @@ class HistoryStore: ObservableObject {
 
         print("History: ", exerciseDays)
     }
+
+    func save() throws {
+        var plistData: [[Any]] = []
+        for exerciseDay in exerciseDays {
+            plistData.append(
+                ([
+                    exerciseDay.id.uuidString,
+                    exerciseDay.date,
+                    exerciseDay.exercises,
+                ])
+            )
+        }
+    }
 }
 
-enum FileError : Error{
+enum FileError: Error {
     case loadFailure
     case saveFailure
 }
 
-
 func load() throws {
-//    throw FileError.loadFailure
+    //    throw FileError.loadFailure
 }
