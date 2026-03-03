@@ -18,6 +18,22 @@ struct HIITFitApp: App {
                 .onAppear(perform: {
                     print(URL.documentsDirectory)
                 }).environmentObject(historyStore)
+                .alert(
+                    "History",
+                    isPresented: $historyStore.loadingError,
+                    actions: {
+                        Button("OK") {}
+                    },
+                    message: {
+                        Text(
+                            """
+                            Unfortunately we can't load your past history.
+                            Email support:
+                            super@support.com
+                            """
+                        )
+                    }
+                )
         }
     }
 }
