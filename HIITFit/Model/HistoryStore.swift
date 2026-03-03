@@ -43,3 +43,13 @@ class HistoryStore: ObservableObject {
         print("History: ", exerciseDays)
     }
 }
+
+enum FileError : Error{
+    case loadFailure
+    case saveFailure
+}
+
+
+func load() throws {
+    throw FileError.loadFailure
+}
