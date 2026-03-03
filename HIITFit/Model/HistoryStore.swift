@@ -18,6 +18,12 @@ class HistoryStore: ObservableObject {
     @Published var exerciseDays: [ExerciseDay] = []
 
     init() {
+        do{
+            try load()
+        }catch{
+            print("Error:", error)
+        }
+        
         //compiler directive
         #if DEBUG
             //            createDevData()
