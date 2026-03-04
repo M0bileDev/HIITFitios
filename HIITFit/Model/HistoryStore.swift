@@ -20,7 +20,7 @@ class HistoryStore: ObservableObject {
     @Published var exerciseDays: [ExerciseDay] = []
 
     var dataURL: URL {
-        URL.documentsDirectory.appendingPathExtension("history.plist")
+        URL.documentsDirectory.appendingPathComponent("history.plist")
     }
 
     init() {
@@ -53,16 +53,30 @@ class HistoryStore: ObservableObject {
             )
         }
 
-        print("History: ", exerciseDays)
+        do {
+            try save()
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
 
     func save() throws {
         let plistData = exerciseDays.map {
-          [
-            $0.id.uuidString,
-            $0.date,
-            $0.exercises
-          ]
+            [
+                $0.id.uuidString,
+                $0.date,
+                $0.exercises,
+            ]
+        }
+        do {
+            let data = try PropertyListSerialization.data(
+                fromPropertyList: plistData,
+                format: .binary,
+                options: .zero
+            )
+            try data.write(to: dataURL, options: .atomic)
+        } catch {
+            throw FileError.saveFailure
         }
     }
 }
