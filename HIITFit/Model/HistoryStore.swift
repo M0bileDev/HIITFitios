@@ -57,11 +57,11 @@ class HistoryStore: ObservableObject {
     }
 
     func save() throws {
-        let plistData = exerciseDays.map { exerciseDay in
+        let plistData = exerciseDays.map {
           [
-            exerciseDay.id.uuidString,
-            exerciseDay.date,
-            exerciseDay.exercises
+            $0.id.uuidString,
+            $0.date,
+            $0.exercises
           ]
         }
     }
