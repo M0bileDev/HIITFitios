@@ -11,6 +11,12 @@ struct WelcomeView: View {
 
     @State private var showHistory = false
     @Binding var selectedTab: Int
+    var getStartedButton: some View {
+        RaisedButton(buttonText: "Get started") {
+            selectedTab = 0
+        }
+        .padding()
+    }
 
     var body: some View {
         ZStack {
@@ -41,16 +47,7 @@ struct WelcomeView: View {
                             Circle()
                         )
                 }
-                Button(
-                    action: {
-                        selectedTab = 0
-                    },
-                    label: {
-                        Text("Get started")
-                            .raisedButtonTextStyle()
-                    }
-                ).buttonStyle(.raised)
-                    .padding()
+                getStartedButton
             }
         }
     }
