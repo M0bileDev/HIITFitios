@@ -9,7 +9,10 @@ import SwiftUI
 
 struct RaisedButton: View {
     var body: some View {
-        Button(action: {}, label: { Text("Get started") })
+        Button(
+            action: {},
+            label: { Text("Get started").raisedButtonTextStyle() }
+        )
     }
 }
 
@@ -17,4 +20,12 @@ struct RaisedButton: View {
     ZStack {
         RaisedButton().padding(20)
     }.background(Color.background)
+}
+
+extension Text {
+    func raisedButtonTextStyle() -> some View {
+        self
+            .font(.body)
+            .fontWeight(.bold)
+    }
 }
