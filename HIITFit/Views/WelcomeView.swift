@@ -47,17 +47,10 @@ struct WelcomeView: View {
                     },
                     label: {
                         Text("Get started")
-                        Image(systemName: "arrow.right.circle")
+                            .raisedButtonTextStyle()
                     }
-                )
-                .font(.title2)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 20).stroke(
-                        Color.gray,
-                        lineWidth: 2
-                    )
-                )
+                ).buttonStyle(.raised)
+                    .padding()
             }
         }
     }
