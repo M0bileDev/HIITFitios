@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct RaisedButton: View {
+
+    let buttonText: String
+    let action: () -> Void
+
     var body: some View {
         Button(
-            action: {},
-            label: { Text("Get started").raisedButtonTextStyle() }
-        )
+            action: {
+                action()
+            },
+            label: { Text(buttonText).raisedButtonTextStyle() }
+        ).buttonStyle(.raised)
     }
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    ZStack {
-        RaisedButton().padding(20)
-    }.background(Color.background)
-        .buttonStyle(.raised)
+    RaisedButton(buttonText: "Get Started") {
+      print("Hello World")
+    }
 }
 
 extension Text {
