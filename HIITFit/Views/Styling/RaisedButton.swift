@@ -29,3 +29,9 @@ extension Text {
             .fontWeight(.bold)
     }
 }
+
+struct RaisedButtonStyle : ButtonStyle{
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label.background(Color.red)
+    }
+}
