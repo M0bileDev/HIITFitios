@@ -45,19 +45,27 @@ struct RatingView: View {
                 1..<maximumRating + 1,
                 id: \.self,
                 content: { index in
-                    Image(systemName: "waveform.path.ecg").foregroundColor(
-                        index > rating ? offColor : onColor
-                    ).onAppear(perform: {
-                        convertRating()
-                    })
+                    Button(
+                        action: {
+                            updateRating(index: index)
+                        },
+                        label: {
+                            Image(systemName: "waveform.path.ecg")
+                                .foregroundStyle(
+                                    index > rating ? offColor : onColor
+                                )
+                                .font(.body)
+                        }
+                    )
+                    .buttonStyle(EmbossedButtonStyle(buttonShape: .circle))
                     .onChange(
                         of: ratings,
                         {
                             convertRating()
                         }
                     )
-                    .onTapGesture {
-                        updateRating(index: index)
+                    .onAppear {
+                        convertRating()
                     }
                 }
             ).font(.largeTitle)
