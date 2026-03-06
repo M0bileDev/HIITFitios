@@ -11,11 +11,24 @@ struct WelcomeView: View {
 
     @State private var showHistory = false
     @Binding var selectedTab: Int
+    
     var getStartedButton: some View {
         RaisedButton(buttonText: "Get started") {
             selectedTab = 0
         }
         .padding()
+        
+    }
+    var historyButton: some View {
+        Button(action: {
+            showHistory.toggle()
+        }, label: {
+            Text("History")
+                .fontWeight(.bold)
+                .padding([.leading, .trailing], 5)
+        })
+        .padding(.bottom, 5)
+        .buttonStyle(EmbossedButtonStyle())
     }
 
     var body: some View {
@@ -23,15 +36,10 @@ struct WelcomeView: View {
             VStack {
                 HeaderView(selectedTab: $selectedTab, titleText: "Welcome")
                 Spacer()
-                Button("History") {
-                    showHistory.toggle()
-                }.padding(.bottom)
-                    .sheet(
-                        isPresented: $showHistory,
-                        content: {
-                            HistoryView(showHistory: $showHistory)
-                        }
-                    )
+                historyButton
+                  .sheet(isPresented: $showHistory) {
+                    HistoryView(showHistory: $showHistory)
+                  }
             }
             VStack {
                 HStack(alignment: .bottom) {
