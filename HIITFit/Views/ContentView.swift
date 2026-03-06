@@ -27,8 +27,7 @@ struct ContentView: View {
             )
             Text("Execrice 2")
         }
-        .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }
 
