@@ -41,6 +41,20 @@ struct ExerciseView: View {
             }
         }
     }
+    var historyButton: some View {
+        Button(
+            action: {
+                showHistory.toggle()
+            },
+            label: {
+                Text("History")
+                    .fontWeight(.bold)
+                    .padding([.leading, .trailing], 5)
+            }
+        )
+        .padding(.bottom, 5)
+        .buttonStyle(EmbossedButtonStyle())
+    }
 
     var body: some View {
         // container view that provides with the screen’s measurements
@@ -82,14 +96,13 @@ struct ExerciseView: View {
                 Spacer()
                 RatingView(exerciseIndex: index).padding()
 
-                Button("History") {
-                    showHistory.toggle()
-                }.padding(.bottom).sheet(
-                    isPresented: $showHistory,
-                    content: {
-                        HistoryView(showHistory: $showHistory)
-                    }
-                )
+                historyButton
+                    .padding(.bottom).sheet(
+                        isPresented: $showHistory,
+                        content: {
+                            HistoryView(showHistory: $showHistory)
+                        }
+                    )
             }
         }
     }
