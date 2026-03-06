@@ -24,19 +24,31 @@ struct EmbossedButtonStyle: ButtonStyle {
 
     @ViewBuilder
     private func backgroundShape(shadow: Color, highlight: Color) -> some View {
-        shape()
-            .foregroundStyle(Color.background)
-            .shadow(color: shadow, radius: 1, x: 2, y: 2)
-            .shadow(color: highlight, radius: 1, x: -2, y: -2)
-            .offset(x: -1, y: -1)
+        GeometryReader { geometry in
+            shape(size: geometry.size)
+                .foregroundStyle(Color.background)
+                .shadow(color: shadow, radius: 1, x: 2, y: 2)
+                .shadow(color: highlight, radius: 1, x: -2, y: -2)
+                .offset(x: -1, y: -1)
+        }
     }
 
     @ViewBuilder
-    func shape() -> some View {
+    func shape(size: CGSize) -> some View {
         switch buttonShape {
         case .circle:
             Circle()
                 .stroke(Color.background, lineWidth: 2)
+                .frame(
+                    width: max(size.width, size.height),
+                    height: max(size.width, size.height)
+                ).offset(x: -1)
+                .offset(
+                    y: -max(size.width, size.height) / 2 + min(
+                        size.width,
+                        size.height
+                    ) / 2
+                )
         case .capsule:
             Capsule()
                 .stroke(Color.background, lineWidth: 2)
