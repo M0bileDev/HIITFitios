@@ -39,19 +39,21 @@ struct WelcomeView: View {
             VStack {
                 HeaderView(selectedTab: $selectedTab, titleText: "Welcome")
                 Spacer()
-                VStack {
-                    ZStack {
-                        WelcomeView.bubbles.offset(y: 10)
-                        WelcomeView.welocomeTtile.offset(x: 55, y: -100)
-                        WelcomeView.welocomeSubtitle
-                            .offset(x: 105, y: -55)
-                    }
-                    getStartedButton
-                    Spacer()
-                    historyButton
-                }
-                .sheet(isPresented: $showHistory) {
-                    HistoryView(showHistory: $showHistory)
+                ContainerView {
+                    VStack {
+                        ZStack {
+                            WelcomeView.bubbles.offset(y: 10)
+                            WelcomeView.welocomeTtile.offset(x: 55, y: -100)
+                            WelcomeView.welocomeSubtitle
+                                .offset(x: 105, y: -55)
+                        }
+                        getStartedButton
+                        Spacer()
+                        historyButton
+                    }.padding(.top, 20)
+                        .sheet(isPresented: $showHistory) {
+                            HistoryView(showHistory: $showHistory)
+                        }
                 }
             }
         }
