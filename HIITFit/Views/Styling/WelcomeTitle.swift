@@ -7,12 +7,21 @@
 
 import SwiftUI
 
-struct WelcomeTitle: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+extension WelcomeView {
+    static var welocomeTtile: some View {
+        return VStack {
+            Text("Get fit")
+                .font(.largeTitle)
+                .fontWeight(.black)
+                .kerning(2)
+        }
     }
+
 }
 
-#Preview {
-    WelcomeTitle()
-}
+#Preview(
+    traits: .sizeThatFitsLayout,
+    body: {
+        WelcomeView.welocomeTtile
+    }
+)
