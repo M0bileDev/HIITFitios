@@ -12,11 +12,13 @@ struct GradientBackground: View {
         Gradient(colors: [
             Color.gradientTop,
             Color.gradientBottom,
+            Color.background
         ])
     }
 
     var body: some View {
         LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
+            .ignoresSafeArea()
     }
 }
 
