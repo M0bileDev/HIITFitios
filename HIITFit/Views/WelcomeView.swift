@@ -36,9 +36,11 @@ struct WelcomeView: View {
 
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 0) {
                 HeaderView(selectedTab: $selectedTab, titleText: "Welcome")
-                Spacer()
+                    .containerRelativeFrame(.vertical) { length, _ in
+                        length * 0.2
+                    }
                 ContainerView {
                     VStack {
                         ZStack {
@@ -54,6 +56,8 @@ struct WelcomeView: View {
                         .sheet(isPresented: $showHistory) {
                             HistoryView(showHistory: $showHistory)
                         }
+                }.containerRelativeFrame(.vertical) { length, _ in
+                    length * 0.8
                 }
             }
         }
