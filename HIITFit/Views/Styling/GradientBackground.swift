@@ -9,10 +9,15 @@ import SwiftUI
 
 struct GradientBackground: View {
     var gradient: Gradient {
-        Gradient(colors: [
-            Color.gradientTop,
-            Color.gradientBottom,
-            Color.background
+        let color1 = Color.gradientTop
+        let color2 = Color.gradientBottom
+        let color3 = Color.background
+
+        return Gradient(stops: [
+            Gradient.Stop(color: color1, location: 0),
+            Gradient.Stop(color: color2, location: 0.9),
+            Gradient.Stop(color: color3, location: 0.9),
+            Gradient.Stop(color: color3, location: 1),
         ])
     }
 
