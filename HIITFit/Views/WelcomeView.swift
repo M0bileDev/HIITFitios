@@ -11,22 +11,25 @@ struct WelcomeView: View {
 
     @State private var showHistory = false
     @Binding var selectedTab: Int
-    
+
     var getStartedButton: some View {
         RaisedButton(buttonText: "Get started") {
             selectedTab = 0
         }
         .padding()
-        
+
     }
     var historyButton: some View {
-        Button(action: {
-            showHistory.toggle()
-        }, label: {
-            Text("History")
-                .fontWeight(.bold)
-                .padding([.leading, .trailing], 5)
-        })
+        Button(
+            action: {
+                showHistory.toggle()
+            },
+            label: {
+                Text("History")
+                    .fontWeight(.bold)
+                    .padding([.leading, .trailing], 5)
+            }
+        )
         .padding(.bottom, 5)
         .buttonStyle(EmbossedButtonStyle())
     }
@@ -36,26 +39,20 @@ struct WelcomeView: View {
             VStack {
                 HeaderView(selectedTab: $selectedTab, titleText: "Welcome")
                 Spacer()
-                historyButton
-                  .sheet(isPresented: $showHistory) {
-                    HistoryView(showHistory: $showHistory)
-                  }
-            }
-            VStack {
-                HStack(alignment: .bottom) {
-                    VStack(alignment: .leading) {
-                        Text("Get fit").font(.largeTitle)
-                        Text("with hight intensity interval training").font(
-                            .headline
-                        )
+                VStack {
+                    ZStack {
+                        WelcomeView.bubbles.offset(y: 10)
+                        WelcomeView.welocomeTtile.offset(x: 55, y: -100)
+                        WelcomeView.welocomeSubtitle
+                            .offset(x: 105, y: -55)
                     }
-                    Image("step-up")
-                        .resizedToFill(width: 240, height: 240)
-                        .clipShape(
-                            Circle()
-                        )
+                    getStartedButton
+                    Spacer()
+                    historyButton
                 }
-                getStartedButton
+                .sheet(isPresented: $showHistory) {
+                    HistoryView(showHistory: $showHistory)
+                }
             }
         }
     }
