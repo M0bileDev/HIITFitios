@@ -31,30 +31,11 @@ extension WelcomeView {
             .padding(.top, 10)
             .padding(.bottom, 10)
     }
-
-    static var welocomeTtile: some View {
-        return VStack {
-            Text("Get fit")
-                .font(.largeTitle)
-                .fontWeight(.black)
-                .kerning(2)
-                .offset(x: 55, y: -90)
-            Text("by exercising \nat home")
-                .font(.headline)
-                .fontWeight(.medium)
-                .kerning(2)
-                .fixedSize(horizontal: false, vertical: true)
-                .offset(x: 105, y: -90)
-        }
-    }
 }
 
 #Preview(
     traits: .sizeThatFitsLayout,
     body: {
-        ZStack {
-            WelcomeView.bubbles
-            WelcomeView.welocomeTtile
-        }
+        WelcomeView.bubbles
     }
 )
