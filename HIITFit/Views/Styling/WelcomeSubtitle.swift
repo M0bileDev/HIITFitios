@@ -7,12 +7,20 @@
 
 import SwiftUI
 
-struct WelcomeSubtitle: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+extension WelcomeView {
+    static var welocomeSubtitle: some View {
+        return Text("by exercising \nat home")
+                .font(.headline)
+                .fontWeight(.medium)
+                .kerning(2)
+                .fixedSize(horizontal: false, vertical: true)
     }
+
 }
 
-#Preview {
-    WelcomeSubtitle()
-}
+#Preview(
+    traits: .sizeThatFitsLayout,
+    body: {
+        WelcomeView.welocomeSubtitle
+    }
+)
