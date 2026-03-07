@@ -25,10 +25,9 @@ struct ContentView: View {
                     )
                 }
             )
-            Text("Execrice 2")
         }
-        .background(GradientBackground())
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        .background(GradientBackground())
     }
 }
 
