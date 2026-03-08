@@ -59,50 +59,68 @@ struct ExerciseView: View {
     var body: some View {
         // container view that provides with the screen’s measurements
         GeometryReader { geometry in
-            VStack {
+            VStack(spacing: 0) {
                 HeaderView(
                     selectedTab: $selectedTab,
                     titleText: exercise.exerciseName
                 ).padding(.bottom)
-                VideoPlayerView(
-                    videoName: exercise.videoName,
-                    videExtension: "mp4"
-                ).frame(height: geometry.size.height * 0.45)
+                    .containerRelativeFrame(.vertical) { length, _ in
+                        length * 0.2
+                    }
 
-                HStack(
-                    spacing: 150,
-                    content: {
-                        startButton
-                        doneButton
-                            .disabled(!timerDone)
-                            .sheet(
-                                isPresented: $showSuccess,
+                ContainerView {
+                    VStack {
+                        VideoPlayerView(
+                            videoName: exercise.videoName,
+                            videExtension: "mp4"
+                        ).frame(height: geometry.size.height * 0.3)
+                            .padding(.leading, 10)
+                            .padding(.trailing, 10)
+                            .padding(.top, 20)
+
+                        HStack(
+                            spacing: 150,
+                            content: {
+                                startButton
+                                doneButton
+                                    .disabled(!timerDone)
+                                    .sheet(
+                                        isPresented: $showSuccess,
+                                        content: {
+                                            SuccessView(
+                                                selectedTab: $selectedTab
+                                            )
+                                            .presentationDetents([
+                                                .medium, .large,
+                                            ])
+                                        }
+                                    )
+                            }
+                        )
+                        .font(.title3)
+                        .padding()
+
+                        if showTimer {
+                            TimerView(
+                                timerDone: $timerDone,
+                                size: geometry.size.height * 0.07
+                            )
+                        }
+                        Spacer()
+                        RatingView(exerciseIndex: index).padding()
+
+                        historyButton
+                            .padding(.bottom).sheet(
+                                isPresented: $showHistory,
                                 content: {
-                                    SuccessView(selectedTab: $selectedTab)
-                                        .presentationDetents([.medium, .large])
+                                    HistoryView(showHistory: $showHistory)
                                 }
                             )
                     }
-                )
-                .font(.title3)
-                .padding()
-
-                if showTimer {
-                    TimerView(
-                        timerDone: $timerDone,
-                        size: geometry.size.height * 0.07
-                    )
+                }.containerRelativeFrame(.vertical) { length, _ in
+                    length * 0.8
                 }
-                Spacer()
-                RatingView(exerciseIndex: index).padding()
 
-                historyButton
-                    .padding(.bottom).sheet(
-                        isPresented: $showHistory,
-                        content: {
-                            HistoryView(showHistory: $showHistory)
-                        }
-                    )
             }
         }
     }
