@@ -16,14 +16,23 @@ struct HeaderView: View {
         VStack {
             Text(titleText)
                 .font(.largeTitle)
+                .fontWeight(.heavy)
+                .padding()
+                .foregroundStyle(Color.white)
             HStack {
                 ForEach(
                     Exercise.exercises.indices,
                     id: \.self,
                     content: { index in
-                        let fill = index == selectedTab ? ".fill" : ""
-                        Image(systemName: "\(index + 1).circle\(fill)").onTapGesture {
-                            selectedTab = index
+                        let opacity = index == selectedTab ? 0.5 : 0
+                        ZStack {
+                            Image(systemName: "circlebadge.fill").font(.largeTitle)
+                                .foregroundStyle(Color.white)
+                                .opacity(opacity)
+                            Image(systemName: "circlebadge.fill")
+                                .font(.headline)
+                                .foregroundStyle(Color.white)
+                                
                         }
                     }
                 )
@@ -34,5 +43,7 @@ struct HeaderView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    HeaderView(selectedTab: .constant(0), titleText: "Squat")
+    ZStack {
+        HeaderView(selectedTab: .constant(0), titleText: "Squat")
+    }.background(Color.black)
 }
