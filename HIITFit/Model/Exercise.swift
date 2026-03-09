@@ -36,4 +36,11 @@ extension Exercise {
         ),
 
     ]
+
+    static let names: [String] = [
+        ExerciseEnum.squat.rawValue,
+        ExerciseEnum.stepUp.rawValue,
+        ExerciseEnum.burpee.rawValue,
+        ExerciseEnum.sunSalute.rawValue,
+    ]
 }
