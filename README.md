@@ -11,6 +11,9 @@ A native iOS fitness app built with **SwiftUI** that guides users through High I
 - 🏃 **Exercise Browser** — browse and follow guided HIIT exercises
 - ⏱️ **Workout Timer** — interval-based countdown timer to keep you on pace
 - 📊 **History & Charts** — visualize completed workouts and track your progress over time
+- ⭐ **Exercise Ratings** — rate exercises with ratings stored via `@AppStorage`
+- 💾 **Scene Restoration** — save and restore workout state per scene using `@SceneStorage`
+- ⚠️ **Error Handling** — display user-friendly alerts when errors occur
 
 ---
 
@@ -20,7 +23,8 @@ A native iOS fitness app built with **SwiftUI** that guides users through High I
 |---|---|
 | SwiftUI | Entire UI layer |
 | Swift Charts | Workout history visualization |
-| @AppStorage / @SceneStorage | Lightweight state persistence |
+| @AppStorage | Persist exercise ratings in UserDefaults |
+| @SceneStorage | Per-scene state restoration |
 
 ---
 
@@ -50,4 +54,4 @@ A native iOS fitness app built with **SwiftUI** that guides users through High I
 
 ## Purpose
 
-This project was developed as a hands-on learning exercise to practice SwiftUI fundamentals including state management, navigation, custom views, and data visualization with Swift Charts.
+This project was developed as a hands-on learning exercise to practice SwiftUI fundamentals including state management, navigation, custom views, data persistence, and data visualization with Swift Charts.
