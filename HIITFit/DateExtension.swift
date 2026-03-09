@@ -32,4 +32,14 @@ extension Date {
     func isSameDay(from day: Date) -> Bool {
         return self.dateMonthYearFormat == day.dateMonthYearFormat
     }
+    
+    // Return array of previous seven days from current date
+    var previousSevenDays: [Date] {
+        (-6...0).map { day in
+          Calendar.current.date(
+            byAdding: .day,
+            value: day,
+            to: self) ?? Date()
+        }
+      }
 }
