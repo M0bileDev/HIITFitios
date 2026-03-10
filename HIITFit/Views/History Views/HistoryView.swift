@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct HistoryView: View {
+
     @Binding var showHistory: Bool
     @EnvironmentObject var history: HistoryStore
+    @State private var addMode = false
 
     var headerView: some View {
         HStack {
+            Button(
+                action: {
+                    addMode = true
+                },
+                label: {
+                    Image(systemName: "plus")
+                }
+            ).padding(.trailing)
             EditButton()
             Spacer()
             Text("History")
