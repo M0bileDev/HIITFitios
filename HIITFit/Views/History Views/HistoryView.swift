@@ -13,6 +13,7 @@ struct HistoryView: View {
 
     var headerView: some View {
         HStack {
+            EditButton()
             Spacer()
             Text("History")
                 .font(.title)
@@ -29,6 +30,7 @@ struct HistoryView: View {
     func dayView(day: ExerciseDay) -> some View {
         DisclosureGroup {
             exerciseView(day: day)
+                .deleteDisabled(true)
         } label: {
             Text(day.date.formatted(from: "d MMM YYYY"))
                 .font(.headline)
