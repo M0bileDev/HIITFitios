@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct AddHistoryView: View {
-    
+
     @Binding var addMode: Bool
     @State private var exerciseDate = Date()
-    
+
     var body: some View {
-        VStack{
+        VStack {
+            ZStack {
+                Text("Add exercise").font(.title)
+                Button("Done") {
+                    addMode = false
+                }.frame(maxWidth: .infinity, alignment: .trailing)
+            }
             DatePicker(
                 "Choose date",
                 selection: $exerciseDate,
