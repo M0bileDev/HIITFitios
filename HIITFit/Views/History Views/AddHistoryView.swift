@@ -20,6 +20,7 @@ struct AddHistoryView: View {
                     addMode = false
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }
+            ButtonsView(date: $exerciseDate)
             DatePicker(
                 "Choose date",
                 selection: $exerciseDate,
@@ -27,6 +28,26 @@ struct AddHistoryView: View {
                 displayedComponents: .date
             ).datePickerStyle(.graphical)
         }.padding()
+    }
+
+    struct ButtonsView: View {
+
+        @EnvironmentObject var history: HistoryStore
+        @Binding var date: Date
+
+        var body: some View {
+            HStack {
+                ForEach(
+                    Exercise.exercises.indices,
+                    id: \.self,
+                    content: { index in
+                        let exerciseName = Exercise.exercises[index]
+                            .exerciseName
+                        Button(action: {}, label: { Text(exerciseName) })
+                    }
+                )
+            }.buttonStyle(EmbossedButtonStyle())
+        }
     }
 }
 
