@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct EmbossedButtonStyle: ButtonStyle {
+
     var buttonShape = EmbossedButtonShape.capsule
+    var buttonScale = 1.0
 
     func makeBody(configuration: Configuration) -> some View {
         let shadow = Color.dropShadow
@@ -18,7 +20,7 @@ struct EmbossedButtonStyle: ButtonStyle {
             .padding(10)
             .background(
                 backgroundShape(shadow: shadow, highlight: highlight)
-            )
+            ).scaleEffect(configuration.isPressed ? buttonScale : 1.0)
 
     }
 
