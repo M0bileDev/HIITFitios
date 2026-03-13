@@ -46,7 +46,7 @@ struct AddHistoryView: View {
                         Button(action: {}, label: { Text(exerciseName) })
                     }
                 )
-            }.buttonStyle(EmbossedButtonStyle())
+            }.buttonStyle(EmbossedButtonStyle(buttonScale: 0.8))
         }
     }
 }
