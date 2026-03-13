@@ -72,6 +72,25 @@ class HistoryStore: ObservableObject {
         }
     }
 
+    func addExercise(date: Date, exerciseName: String) {
+        let exerciseDay = ExerciseDay(date: date, exercises: [exerciseName])
+
+        if let index = exerciseDays.firstIndex(where: {
+            $0.date.dateMonthYearFormat <= date.dateMonthYearFormat
+        }) {
+
+            if date.isSameDay(from: exerciseDays[index].date) {
+                exerciseDays[index].exercises.append(exerciseName)
+            } else {
+                exerciseDays.insert(exerciseDay, at: index)
+            }
+        } else {
+            exerciseDays.append(exerciseDay)
+        }
+
+        try? save()
+    }
+
     func save() throws {
         let plistData = exerciseDays.map {
             [
