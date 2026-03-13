@@ -56,10 +56,20 @@ struct HistoryView: View {
 
     var body: some View {
         VStack {
-            headerView
-                .padding()
+            Group{
+                if addMode {
+                    Text("History").font(.title)
+                }else{
+                    headerView
+                }
+            }
+            //keep the same padding in both views
+            .padding()
             List($history.exerciseDays, editActions: [.delete]) { $day in
                 dayView(day: day)
+            }
+            if(addMode){
+                AddHistoryView(addMode: $addMode)
             }
         }
         .onDisappear {
