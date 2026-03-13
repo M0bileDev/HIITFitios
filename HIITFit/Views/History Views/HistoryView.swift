@@ -56,10 +56,10 @@ struct HistoryView: View {
 
     var body: some View {
         VStack {
-            Group{
+            Group {
                 if addMode {
                     Text("History").font(.title)
-                }else{
+                } else {
                     headerView
                 }
             }
@@ -68,8 +68,14 @@ struct HistoryView: View {
             List($history.exerciseDays, editActions: [.delete]) { $day in
                 dayView(day: day)
             }
-            if(addMode){
+            if addMode {
                 AddHistoryView(addMode: $addMode)
+                    .background(
+                        Color.primary.colorInvert().shadow(
+                            color: .primary.opacity(0.4),
+                            radius: 7
+                        )
+                    )
             }
         }
         .onDisappear {
