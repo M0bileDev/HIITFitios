@@ -43,7 +43,15 @@ struct AddHistoryView: View {
                     content: { index in
                         let exerciseName = Exercise.exercises[index]
                             .exerciseName
-                        Button(action: {}, label: { Text(exerciseName) })
+                        Button(
+                            action: {
+                                history.addExercise(
+                                    date: date,
+                                    exerciseName: exerciseName
+                                )
+                            },
+                            label: { Text(exerciseName) }
+                        )
                     }
                 )
             }.buttonStyle(EmbossedButtonStyle(buttonScale: 0.8))
@@ -52,5 +60,5 @@ struct AddHistoryView: View {
 }
 
 #Preview {
-    AddHistoryView(addMode: .constant(true))
+    AddHistoryView(addMode: .constant(true)).environmentObject(HistoryStore(preview: true))
 }
