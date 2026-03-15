@@ -17,10 +17,12 @@ struct BarChartWeekView: View {
         Chart(
             weekData,
             content: { day in
-                BarMark(
+                LineMark(
                     x: .value("Date", day.date, unit: .day),
                     y: .value("Total count", day.exercises.count)
                 )
+                .symbol(.circle)
+                .interpolationMethod(.catmullRom)
                 RuleMark(y: .value("Exercices per day", 4))
                     .foregroundStyle(.red)
             }
