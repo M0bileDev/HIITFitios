@@ -35,6 +35,12 @@ struct BarChartWeekView: View {
                     .foregroundStyle(.red)
             }
         )
+        .chartForegroundStyleScale([
+          "Burpee": Color("chart-burpee"),
+          "Squat": Color("chart-squat"),
+          "Step Up": Color("chart-step-up"),
+          "Sun Salute": Color("chart-sun-salute")
+        ])
         .padding()
         .onAppear(perform: {
             let firstDate = historyStore.exerciseDays.first?.date ?? Date()
