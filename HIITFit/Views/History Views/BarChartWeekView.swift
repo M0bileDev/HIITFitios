@@ -17,16 +17,26 @@ struct BarChartWeekView: View {
         Chart(
             weekData,
             content: { day in
-                LineMark(
-                    x: .value("Date", day.date, unit: .day),
-                    y: .value("Total count", day.exercises.count)
+                ForEach(
+                    Exercise.names,
+                    id: \.self,
+                    content: { name in
+                        BarMark(
+                            x: .value("Date", day.date, unit: .day),
+                            y: .value(
+                                "Total count",
+                                day.countExercise(exercise: name)
+                            )
+                        )
+                        .foregroundStyle(by: .value("Exercise", name))
+                    }
                 )
-                .symbol(.circle)
-                .interpolationMethod(.catmullRom)
                 RuleMark(y: .value("Exercices per day", 4))
                     .foregroundStyle(.red)
             }
-        ).onAppear(perform: {
+        )
+        .padding()
+        .onAppear(perform: {
             let firstDate = historyStore.exerciseDays.first?.date ?? Date()
             let previousWeek = firstDate.previousSevenDays
             weekData = previousWeek.map { date in
