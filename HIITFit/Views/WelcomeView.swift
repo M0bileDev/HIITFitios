@@ -66,7 +66,7 @@ struct WelcomeView: View {
                         }
                         getStartedButton
                         Spacer()
-                        HStack(spacing: 32){
+                        HStack(spacing: 32) {
                             historyButton
                             reportsButton
                         }
@@ -74,6 +74,12 @@ struct WelcomeView: View {
                         .sheet(isPresented: $showHistory) {
                             HistoryView(showHistory: $showHistory)
                         }
+                        .sheet(
+                            isPresented: $showReports,
+                            content: {
+                                BarChartWeekView()
+                            }
+                        )
                 }.containerRelativeFrame(.vertical) { length, _ in
                     length * 0.8
                 }
