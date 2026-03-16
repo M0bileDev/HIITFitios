@@ -10,6 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
 
     @State private var showHistory = false
+    @State private var showReports = false
     @Binding var selectedTab: Int
 
     var getStartedButton: some View {
@@ -26,6 +27,20 @@ struct WelcomeView: View {
             },
             label: {
                 Text("History")
+                    .fontWeight(.bold)
+                    .padding([.leading, .trailing], 5)
+            }
+        )
+        .padding(.bottom, 5)
+        .buttonStyle(EmbossedButtonStyle())
+    }
+    var reportsButton: some View {
+        Button(
+            action: {
+                showReports.toggle()
+            },
+            label: {
+                Text("Reports")
                     .fontWeight(.bold)
                     .padding([.leading, .trailing], 5)
             }
@@ -51,7 +66,10 @@ struct WelcomeView: View {
                         }
                         getStartedButton
                         Spacer()
-                        historyButton
+                        HStack(spacing: 32){
+                            historyButton
+                            reportsButton
+                        }
                     }.padding(.top, 20)
                         .sheet(isPresented: $showHistory) {
                             HistoryView(showHistory: $showHistory)
